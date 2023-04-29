@@ -95,7 +95,7 @@ and the huts, described in a CSV file that is structured as follows:
 | 3	| Name					|				|		✓   |
 | 4	| Altitude				|				|		✓	|
 | 5	| Category				|				|		✓	|
-| 6	| BedsNumber				|				|		✓	|
+| 6	| BedsNumber			|				|		✓	|
 -->
 
 Note: the file contains a line for each hut, therefore the information about municipalities may be duplicated.
@@ -107,9 +107,9 @@ All data about mountain huts in Piedmont are available in the file: `data/mounta
 
 Hints:
 
-* To read from file check the fragment of code already available in `readData()` that reads a file line by line, 
-  and inserts that information into a list. The first line of the file contains the headers, actual data starts from 
-  the second line.
+* To read from a CSV file you can use the provided method `readData()`, which  reads a text file line by line, 
+  and returns a list of rows. The first rows contains the headers, while the actual data starts from 
+  the second row.
 
 
 ## R4 - Queries

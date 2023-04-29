@@ -114,7 +114,8 @@ I dati relativi ai rifugi della regione Piemonte sono disponibili nel file: `dat
 
 Suggerimenti
 
-* Per la lettura da file, si parta dal metodo `readData()` che legge le righe di un file e le inserisce in una lista. 
+* Per la lettura da file, si utilizzi il metodo `readData()`, che legge le linee di un file di testo e restituisce una lista
+  contenete le righe. 
   La prima riga del file contiene le intestazioni, mentre quelle successive contengono i dati veri e propri.
 
 

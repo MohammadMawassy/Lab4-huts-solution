@@ -3,15 +3,8 @@ package mountainhuts;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.TreeMap;
+import java.util.*;
+
 import static java.util.stream.Collectors.*;
 
 /**
@@ -227,12 +220,18 @@ public class Region {
 		return r;
 	}
 
-	private static List<String> readData(String file) {
+	/**
+	 * Reads the lines of a text file.
+	 *
+	 * @param file path of the file
+	 * @return a list with one element per line
+	 */
+	public static List<String> readData(String file) {
 		try (BufferedReader in = new BufferedReader(new FileReader(file))) {
 			return in.lines().collect(toList());
 		} catch (IOException e) {
 			System.err.println(e.getMessage());
-			return null;
+			return new ArrayList<>();
 		}
 	}
 
