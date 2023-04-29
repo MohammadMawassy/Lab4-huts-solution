@@ -1,9 +1,9 @@
 package mountainhuts;
 
 public class Municipality {
-	private String name;
-	private String province;
-	private Integer altitude;
+	private final String name;
+	private final String province;
+	private final Integer altitude;
 
 	public Municipality(String name, String province, Integer altitude) {
 		this.name = name;

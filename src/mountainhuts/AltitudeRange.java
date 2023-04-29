@@ -7,8 +7,8 @@ package mountainhuts;
  *
  */
 public class AltitudeRange {
-	private int minValue;
-	private int maxValue;
+	private final int minValue;
+	private final int maxValue;
 
 	public final static AltitudeRange DEFAULT = new AltitudeRange("0-"+Integer.MAX_VALUE);
 	/**
@@ -33,14 +33,6 @@ public class AltitudeRange {
 	 */
 	public boolean contains(int altitude) {
 		return minValue < altitude && altitude <= maxValue;
-	}
-	
-	public int getMinValue() {
-		return minValue;
-	}
-
-	public int getMaxValue() {
-		return maxValue;
 	}
 
 	@Override

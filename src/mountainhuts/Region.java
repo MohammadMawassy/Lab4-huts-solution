@@ -23,10 +23,10 @@ import static java.util.stream.Collectors.*;
  *
  */
 public class Region {
-	private String name;
-	private List<AltitudeRange> altitudeRanges;
-	private Collection<Municipality> municipalities;
-	private Collection<MountainHut> mountainHuts;
+	private final String name;
+	private final List<AltitudeRange> altitudeRanges;
+	private final Collection<Municipality> municipalities;
+	private final Collection<MountainHut> mountainHuts;
 
 	/**
 	 * Create a region with the given name.
@@ -194,6 +194,7 @@ public class Region {
 	public static Region fromFile(String name, String file) {
 		Region r = new Region(name);
 		List<String> lines = Region.readData(file);
+		if(lines==null) return null;
 
 		// Extract headers and build the relative map
 		String[] headers = lines.remove(0).split(";");
@@ -305,7 +306,7 @@ public class Region {
 									mapping(MountainHut::getBedsNumber, 
 											maxBy(Comparator.naturalOrder()))));
 		// adds also altitude ranges with no mountain huts
-		altitudeRanges.stream().map(x->x.toString()).forEach(r -> res.putIfAbsent(r, Optional.of(0)));
+		altitudeRanges.stream().map(AltitudeRange::toString).forEach(r -> res.putIfAbsent(r, Optional.of(0)));
 		return res;
 	}
 

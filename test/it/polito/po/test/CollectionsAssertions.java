@@ -31,7 +31,16 @@ public class CollectionsAssertions {
 			prev = current;
 		}
 	}
-	
+
+	/**
+	 * Expected entry descriptor.
+	 * The expected value may be compared to the map entry value
+	 * or to a value derived from it
+	 *
+	 * @param <K> Type of entry key
+	 * @param <V> Type of entry value
+	 * @param <R> Type of expected value
+	 */
 	static class Entry<K,V,R> {
 		final K k;
 		final R v;
@@ -49,14 +58,14 @@ public class CollectionsAssertions {
 	}
 
 	/**
-	 * Factory method to define an expected entry.
+	 * Factory method to define an expected entry descriptor
 	 * The value obtained from the map for the key is compared to the given expected value
 	 * 
 	 * @param <K>	type of map keys
 	 * @param <V>	type of map values
 	 * @param key		key
 	 * @param expectedValue		value
-	 * @return
+	 * @return an expected Entry descriptor
 	 */
 	static <K,V> Entry<K,V,V> entry(K key, V expectedValue){ return new Entry<>(key,expectedValue); }
 
@@ -70,7 +79,7 @@ public class CollectionsAssertions {
 	 * @param key		key
 	 * @param getter	getter function that 
 	 * @param expected		value
-	 * @return
+	 * @return an expected Entry descriptor
 	 */
 	static <K,V,R> Entry<K,V,R> entry(K key, Function<V,R> getter, R expected){ return new Entry<>(key,getter,expected); }
 
@@ -88,7 +97,7 @@ public class CollectionsAssertions {
 	@SafeVarargs
 	static <K,V,R> void assertMapContains(String message, Map<K,V> map, Entry<K,V,R>... entries) {
 		for(Entry<K,V,R> e : entries) {
-			if(e.get instanceof java.util.function.Function)
+			if(e.get != null)
 				assertEquals(message + "For key " + e.k, e.v, e.get.apply(map.get(e.k)));
 			else
 				assertEquals(message + "For key " + e.k, e.v, map.get(e.k));

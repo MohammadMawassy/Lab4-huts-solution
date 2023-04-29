@@ -35,7 +35,7 @@ public class TestR3_ReadData {
 			try (InputStream in = TestR3_ReadData.class.getResourceAsStream("mountain_huts.csv"); 
 				FileOutputStream out = new FileOutputStream(outFile)) {
 				byte[] b = new byte[2048];
-				int n = 0;
+				int n;
 				while ((n = in.read(b)) != -1) {
 					out.write(b, 0, n);
 				}
@@ -43,20 +43,20 @@ public class TestR3_ReadData {
 			}
 		} catch (IOException e) {
 			file = null;
-			System.err.println(e);
-			outFile = null;
+			System.err.println(e.getMessage());
 		}
 	}
 
 	private Region r;
 
 	@Before
-	public void setUp() throws IOException {
+	public void setUp() {
+		assertNotNull("Could not create temporary file", file);
 		r = Region.fromFile("Piemonte", file);
 	}
 
 	@Test
-	public void testReadMunicipalities() throws IOException {
+	public void testReadMunicipalities() {
 		assertNotNull("Missing region", r);
 
 		Collection<Municipality> municipalities = r.getMunicipalities();
@@ -76,7 +76,7 @@ public class TestR3_ReadData {
 	}
 
 	@Test
-	public void testReadMountainHuts() throws IOException {
+	public void testReadMountainHuts() {
 		assertNotNull("Missing region", r);
 
 		Collection<MountainHut> mountainHuts = r.getMountainHuts();

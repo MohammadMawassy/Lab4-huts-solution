@@ -51,7 +51,7 @@ public class ExampleTest {
 		Map<String, Optional<Integer>> res5 = r.maximumBedsNumberPerAltitudeRange();
 		assertNotNull("Missing maximum beds number per altitude range", res5);
 		assertEquals("Wrong number of maximum beds number in altitude range 0-1000", Integer.valueOf(27),
-				res5.get("0-1000").get());
+				res5.get("0-1000").orElse(-1));
 
 		Map<Long, List<String>> res6 = r.municipalityNamesPerCountOfMountainHuts();
 		assertNotNull("Missing set of municipality names per count of mountain huts", res6);

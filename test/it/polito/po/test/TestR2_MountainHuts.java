@@ -1,9 +1,5 @@
 package it.polito.po.test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
 import java.util.Collection;
 import java.util.Optional;
 
@@ -13,6 +9,8 @@ import org.junit.Test;
 import mountainhuts.MountainHut;
 import mountainhuts.Municipality;
 import mountainhuts.Region;
+
+import static org.junit.Assert.*;
 
 public class TestR2_MountainHuts {
 
@@ -56,7 +54,7 @@ public class TestR2_MountainHuts {
 		Municipality m2 = r.createOrGetMunicipality("Torino", "TO", 245);
 
 		assertNotNull("Missing municipality", m1);
-		assertTrue("Duplicate municipality", m1.equals(m2));
+		assertSame("Duplicate municipality", m1, m2);
 		assertEquals("Wrong municipality name", "Torino", m1.getName());
 		assertEquals("Wrong municipality province", "TO", m1.getProvince());
 		assertEquals("Wrong municipality altitude", Integer.valueOf(245), m1.getAltitude());
@@ -69,7 +67,7 @@ public class TestR2_MountainHuts {
 		MountainHut h2 = r.createOrGetMountainHut("Alpe", "Rifugio", 10, m);
 
 		assertNotNull("Missing mountain hut", h1);
-		assertTrue("Duplicate mountain hut", h1.equals(h2));
+		assertSame("Duplicate mountain hut", h1, h2);
 		assertEquals("Wrong mountain hut name", "Alpe", h1.getName());
 		assertEquals("Wrong mountain hut category", "Rifugio", h1.getCategory());
 		assertEquals("Wrong mountain hut altitude", Optional.empty(), h1.getAltitude());
@@ -77,7 +75,7 @@ public class TestR2_MountainHuts {
 		assertEquals("Wrong mountain municipality", m, h1.getMunicipality());
 
 		MountainHut h3 = r.createOrGetMountainHut("Tappa", 1250, "Bivacco", 0, m);
-		assertEquals("Wrong mountain hut altitude", Integer.valueOf(1250), h3.getAltitude().get());
+		assertEquals("Wrong mountain hut altitude", Integer.valueOf(1250), h3.getAltitude().orElse(-1));
 	}
 
 }
