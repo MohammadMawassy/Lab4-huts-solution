@@ -1,5 +1,10 @@
 package mountainhuts;
 
+/**
+ * Class representing a municipality that hosts a mountain hut.
+ * It is a data class with getters for name, province, and altitude
+ * 
+ */
 public class Municipality {
 	private final String name;
 	private final String province;
