@@ -54,7 +54,7 @@ public class ExampleTest {
 	public void testR3() {
 		Region r = Region.fromFile("Piemonte", "data/mountain_huts.csv");
 
-		assertNotNull("No region from fille", r);
+		assertNotNull("No region from file", r);
 
 		Collection<Municipality> municipalities = r.getMunicipalities();
 		assertNotNull("Missing municipalities", municipalities);
