@@ -48,6 +48,11 @@
 						<version>2.22.0</version>
 					</dependency>
 				</dependencies>
+				<configuration>
+					<includes>
+						<include>**/*.java</include>
+					</includes>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
